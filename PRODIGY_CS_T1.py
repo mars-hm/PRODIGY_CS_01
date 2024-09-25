@@ -29,24 +29,24 @@ st.title("Caesar Cipher")
 
 # Get user input for encryption
 st.header("Encryption")
-ptext = st.text_input("Enter the Plain Text", "")
-key = st.number_input("Shift Key", min_value=0, step=1)
+ptext = st.text_input("Enter the Plaintext", "")
+key = st.text_input("Shift Key", min_value=0, step=1)
 
 if st.button("Encrypt"):
     if ptext and key:
         cipher_text = encrypt(ptext, key)
         st.success(f"Cipher Text: {cipher_text}")
     else:
-        st.error("Please enter both text and key.")
+        st.error("Please enter both text & key.")
 
 # Get user input for decryption
 st.header("Decryption")
-ctext = st.text_input("Enter the Cipher Text", "")
-key_decrypt = st.number_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
+ctext = st.text_input("Enter the Ciphertext", "")
+key_decrypt = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
 
 if st.button("Decrypt"):
     if ctext and key_decrypt:
         plain_text = decrypt(ctext, key_decrypt)
         st.success(f"Plain Text: {plain_text}")
     else:
-        st.error("Please enter both cipher text and key.")
+        st.error("Please enter both ciphertext & key.")
