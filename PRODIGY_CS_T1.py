@@ -42,7 +42,7 @@ if st.button("Encrypt"):
 # Get user input for decryption
 st.header("Decryption")
 ctext = st.text_input("Enter the Ciphertext", "")
-dkey = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
+dkey = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='dkey')
 
 if st.button("Decrypt"):
     if ctext and dkey:
