@@ -29,18 +29,18 @@ st.title("Caesar Cipher")
 
 # Encryption section
 st.header("Encryption")
-ptext = st.text_input("Enter the Plaintext", "")
-key = st.text_input("Enter Shift Key Value (0-99)", "")
+ptext = st.text_input("Enter the Plaintext", "", key="encrypt_text")
+key = st.text_input("Enter Shift Key Value (0-255)", "", key="encrypt_key")
 
 if st.button("Encrypt"):
     if ptext and key:
         try:
             key = int(key)
-            if 0 <= key <= 99:
+            if 0 <= key <= 255:
                 ciphertext = encrypt(ptext, key)
                 st.success(f"Cipher Text: {ciphertext}")
             else:
-                st.error("Key must be between 0 and 99.")
+                st.error("Key must be between 0 and 255.")
         except ValueError:
             st.error("Please enter a valid integer for the key.")
     else:
@@ -48,18 +48,18 @@ if st.button("Encrypt"):
 
 # Decryption section
 st.header("Decryption")
-ctext = st.text_input("Enter the Ciphertext", "")
-dkey = st.text_input("Enter Shift Key Value (0-99)", "")
+ctext = st.text_input("Enter the Ciphertext", "", key="decrypt_text")
+dkey = st.text_input("Enter Shift Key Value (0-255)", "", key="decrypt_key")
 
 if st.button("Decrypt"):
     if ctext and dkey:
         try:
-            dkey = int(dkey)  # Make sure to convert to integer
-            if 0 <= dkey <= 99:
+            dkey = int(dkey)  # Convert to integer
+            if 0 <= dkey <= 255:
                 plaintext = decrypt(ctext, dkey)
                 st.success(f"Plain Text: {plaintext}")
             else:
-                st.error("Key must be between 0 and 99.")
+                st.error("Key must be between 0 and 255.")
         except ValueError:
             st.error("Please enter a valid integer for the key.")
     else:
