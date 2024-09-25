@@ -25,8 +25,10 @@ def decrypt(ctext, key):
     return plaintext
 
 # ---- Streamlit Application ---
-st.title("Caesar Cipher")
-
+st.markdown(
+    "<h1 style='text-align: center;'>Caesar Cipher</h1>", 
+    unsafe_allow_html=True
+)
 # Encryption section
 st.header("Encryption")
 ptext = st.text_input("Enter the Plaintext", "", key="encrypt_text")
