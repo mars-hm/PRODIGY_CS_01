@@ -45,7 +45,7 @@ ctext = st.text_input("Enter the Ciphertext", "")
 dkey = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
 
 if st.button("Decrypt"):
-    if ctext and key_decrypt:
+    if ctext and dkey:
         plaintext = decrypt(ctext, dkey)
         st.success(f"Plain Text: {plaintext}")
     else:
