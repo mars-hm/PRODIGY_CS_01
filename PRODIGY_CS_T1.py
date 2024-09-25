@@ -24,13 +24,12 @@ def decrypt(ctext, key):
             plaintext += char
     return plaintext
 
-# Streamlit application layout
+# ---- Streamlit App ----
 st.title("Caesar Cipher")
 
-# Get user input for encryption
 st.header("Encryption")
 ptext = st.text_input("Enter the Plaintext", "")
-key = st.text_input("Shift Key", min_value=0, step=1)
+key = st.number_input("Shift Key", min_value=0, step=1)
 
 if st.button("Encrypt"):
     if ptext and key:
@@ -42,7 +41,7 @@ if st.button("Encrypt"):
 # Get user input for decryption
 st.header("Decryption")
 ctext = st.text_input("Enter the Ciphertext", "")
-dkey = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='dkey')
+dkey = st.number_input("Shift Key for Decryption", min_value=0, step=1, key='dkey')
 
 if st.button("Decrypt"):
     if ctext and dkey:
