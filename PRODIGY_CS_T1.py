@@ -1,5 +1,6 @@
 import streamlit as st
 
+# Define the encryption function
 def encrypt(ptext, key):
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     cipher = ''
@@ -11,6 +12,7 @@ def encrypt(ptext, key):
             cipher += char
     return cipher
 
+# Define the decryption function
 def decrypt(ctext, key):
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     plaintext = ''
@@ -25,6 +27,7 @@ def decrypt(ctext, key):
 # ---- Streamlit Application ---
 st.title("Caesar Cipher")
 
+# Encryption section
 st.header("Encryption")
 ptext = st.text_input("Enter the Plaintext", "")
 key = st.text_input("Enter Shift Key Value (0-99)", "")
@@ -43,6 +46,7 @@ if st.button("Encrypt"):
     else:
         st.error("Please enter both text & key.")
 
+# Decryption section
 st.header("Decryption")
 ctext = st.text_input("Enter the Ciphertext", "")
 dkey = st.text_input("Enter Shift Key Value (0-99)", "")
@@ -50,9 +54,9 @@ dkey = st.text_input("Enter Shift Key Value (0-99)", "")
 if st.button("Decrypt"):
     if ctext and dkey:
         try:
-            keyd = int(dkey)
+            dkey = int(dkey)  # Make sure to convert to integer
             if 0 <= dkey <= 99:
-                plaintext = decrypt(ctext, keyd)
+                plaintext = decrypt(ctext, dkey)
                 st.success(f"Plain Text: {plaintext}")
             else:
                 st.error("Key must be between 0 and 99.")
