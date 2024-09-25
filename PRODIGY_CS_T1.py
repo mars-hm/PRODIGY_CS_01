@@ -1,6 +1,5 @@
 import streamlit as st
 
-# Define the encryption function
 def encrypt(ptext, key):
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     cipher = ''
@@ -12,7 +11,6 @@ def encrypt(ptext, key):
             cipher += char
     return cipher
 
-# Define the decryption function
 def decrypt(ctext, key):
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     plaintext = ''
@@ -24,28 +22,41 @@ def decrypt(ctext, key):
             plaintext += char
     return plaintext
 
-# ---- Streamlit App ----
+# ---- Streamlit Application ---
 st.title("Caesar Cipher")
 
 st.header("Encryption")
 ptext = st.text_input("Enter the Plaintext", "")
-key = st.number_input("Shift Key", min_value=0, step=1)
+key = st.text_input("Enter Shift Key Value (0-99)", "")
 
 if st.button("Encrypt"):
     if ptext and key:
-        ciphertext = encrypt(ptext, key)
-        st.success(f"Cipher Text: {ciphertext}")
+        try:
+            key = int(key)
+            if 0 <= key <= 99:
+                ciphertext = encrypt(ptext, key)
+                st.success(f"Cipher Text: {ciphertext}")
+            else:
+                st.error("Key must be between 0 and 99.")
+        except ValueError:
+            st.error("Please enter a valid integer for the key.")
     else:
         st.error("Please enter both text & key.")
 
-# Get user input for decryption
 st.header("Decryption")
 ctext = st.text_input("Enter the Ciphertext", "")
-dkey = st.number_input("Shift Key for Decryption", min_value=0, step=1, key='dkey')
+dkey = st.text_input("Enter Shift Key Value (0-99)", "")
 
 if st.button("Decrypt"):
     if ctext and dkey:
-        plaintext = decrypt(ctext, dkey)
-        st.success(f"Plain Text: {plaintext}")
+        try:
+            dkey = int(dkey)
+            if 0 <= dkey <= 99:
+                plaintext = decrypt(ctext, dkey)
+                st.success(f"Plain Text: {plaintext}")
+            else:
+                st.error("Key must be between 0 and 99.")
+        except ValueError:
+            st.error("Please enter a valid integer for the key.")
     else:
         st.error("Please enter both ciphertext & key.")
