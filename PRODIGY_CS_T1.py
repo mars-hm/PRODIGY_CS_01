@@ -34,19 +34,19 @@ key = st.text_input("Shift Key", min_value=0, step=1)
 
 if st.button("Encrypt"):
     if ptext and key:
-        cipher_text = encrypt(ptext, key)
-        st.success(f"Cipher Text: {cipher_text}")
+        ciphertext = encrypt(ptext, key)
+        st.success(f"Cipher Text: {ciphertext}")
     else:
         st.error("Please enter both text & key.")
 
 # Get user input for decryption
 st.header("Decryption")
 ctext = st.text_input("Enter the Ciphertext", "")
-key_decrypt = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
+dkey = st.text_input("Shift Key for Decryption", min_value=0, step=1, key='decrypt_key')
 
 if st.button("Decrypt"):
     if ctext and key_decrypt:
-        plain_text = decrypt(ctext, key_decrypt)
-        st.success(f"Plain Text: {plain_text}")
+        plaintext = decrypt(ctext, dkey)
+        st.success(f"Plain Text: {plaintext}")
     else:
         st.error("Please enter both ciphertext & key.")
