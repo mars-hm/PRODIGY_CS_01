@@ -50,9 +50,9 @@ dkey = st.text_input("Enter Shift Key Value (0-99)", "")
 if st.button("Decrypt"):
     if ctext and dkey:
         try:
-            dkey = int(dkey)
+            keyd = int(dkey)
             if 0 <= dkey <= 99:
-                plaintext = decrypt(ctext, dkey)
+                plaintext = decrypt(ctext, keyd)
                 st.success(f"Plain Text: {plaintext}")
             else:
                 st.error("Key must be between 0 and 99.")
